@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,10 @@ Route::get('/', function () {
     ]);
 });
 
-Route::resource('employees', EmployeeController::class);
+Route::resource('employees', EmployeeController::class); // route for employees
+
+
+Route::resource('testing', TestController::class); // route for employees
 
 
 Route::get('/dashboard', function () {
