@@ -1,4 +1,6 @@
 <?php
+
+
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -25,9 +27,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::resource('employees', EmployeeController::class)
-    ->only(['index', 'store'])
-    ->middleware(['auth', 'verified']);
+Route::resource('employees', EmployeeController::class);
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

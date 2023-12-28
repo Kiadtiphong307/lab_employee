@@ -2,72 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
+
+use Inertia\Inertia;
 
 class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
+    public function index()
     {
-        $emp = DB::table('employees')->pluck('first_name')->first();
-        // Log::info($emp);
-         return response($emp);
-
-    }
 
 
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        return Inertia::render('Employees/Index', [
+            'dept' => DB::table('departments')->pluck('dept_name')->sort(),
+            'male' => DB::table('employees')->select('first_name', 'last_name', 'gender') ->where('gender', 'M')->where('first_name', 'like', 'A%')->orderBy('first_name', 'asc')->limit(50)->get(),
+            'female' => DB::table('employees')
+            ->select('first_name', 'last_name', 'gender')
+            ->selectRaw('TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) AS age')
+            ->where('gender', 'F')
+            ->whereRaw('TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) > 50')
+            ->orderBy('age', 'desc') 
+            ->limit(50)
+            ->get()
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 
 }
