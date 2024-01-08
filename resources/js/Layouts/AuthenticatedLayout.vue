@@ -35,9 +35,13 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('employees.index')" :active="route().current('employees.index')">
                                     Employees
                                 </NavLink>
-                                <NavLink :href="route('testing.index')" :active="route().current('testing.index')">
-                                    Test
+                                <NavLink :href="route('happynewyear.index')" :active="route().current('happynewyear.index')">
+                                    Employees 2
                                 </NavLink>
+                                <NavLink :href="route('querybuilder.index')" :active="route().current('querybuilder.index')">
+                                    Employees 3
+                                </NavLink>
+
                             </div>
                         </div>
 

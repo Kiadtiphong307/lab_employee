@@ -2,7 +2,8 @@
 
 
 use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\HappyNewYear;
+use App\Http\Controllers\Query_Builder;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -30,8 +31,9 @@ Route::get('/', function () {
 
 Route::resource('employees', EmployeeController::class); // route for employees
 
+Route::resource('happynewyear', HappyNewYear::class); // route for employees
 
-Route::resource('testing', TestController::class); // route for employees
+Route::resource('querybuilder', Query_Builder::class); // route for employees
 
 
 Route::get('/dashboard', function () {
